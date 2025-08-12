@@ -1920,15 +1920,22 @@ PackageMempoolAcceptResult ProcessNewPackage(Chainstate& active_chainstate, CTxM
 CAmount GetBlockSubsidy(int nHeight, const Consensus::Params& consensusParams)
 {
     int halvings = nHeight / consensusParams.nSubsidyHalvingInterval;
-    // Force block reward to zero when right shift is undefined.
-    if (halvings >= 64)
-        return 0;
 
-    CAmount nSubsidy = 50 * COIN;
-    // Subsidy is cut in half every 210,000 blocks which will occur approximately every 4 years.
-    nSubsidy >>= halvings;
-    return nSubsidy;
+    if (halvings > 3) {
+        halvings = 3;  // Stoppe la réduction après 3 halvings
+    }
+
+    CAmount subsidy = 50 * COIN;
+    subsidy >>= halvings;  // Divise par 2^halvings
+
+    // Forcer la récompense à être au moins 3.25 coins (325000000 satoshis)
+    if (subsidy < 325000000) {
+        subsidy = 325000000;
+    }
+
+    return subsidy;
 }
+
 
 CoinsViews::CoinsViews(DBParams db_params, CoinsViewOptions options)
     : m_dbview{std::move(db_params), std::move(options)},
