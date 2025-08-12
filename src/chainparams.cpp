@@ -65,8 +65,8 @@ public:
         consensus.nRuleChangeActivationThreshold = 1815;
         consensus.nMinerConfirmationWindow = 2016;
 
-        consensus.nMaxBlockWeight = 500000; 
-        consensus.nMaxSerializedBlockSize = 500000;
+        consensus.nMaxBlockWeight = 3 * 1000 * 1000; // 3 Mo
+        consensus.nMaxSerializedBlockSize = 3 * 1000 * 1000; // 3 Mo
 
         genesis = CreateGenesisBlock(1691800000, 214878, 0x1e0ffff0, 1, 50 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
