@@ -49,8 +49,8 @@ public:
         nDefaultPort = 28333;
         nPruneAfterHeight = 100000;
 
-        consensus.nSubsidyHalvingInterval = 210000;
-        consensus.nPowTargetSpacing = 45; // 45 seconds per block
+        consensus.nSubsidyHalvingInterval = 420000;
+        consensus.nPowTargetSpacing = 45;
 
         consensus.BIP16Exception = uint256S("0x0");
         consensus.BIP34Height = 0;
@@ -62,7 +62,7 @@ public:
 
         consensus.powLimit = uint256S("00000fffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
 
-        consensus.nRuleChangeActivationThreshold = 1815; // 90% of 2016
+        consensus.nRuleChangeActivationThreshold = 1815;
         consensus.nMinerConfirmationWindow = 2016;
 
         consensus.nMaxBlockWeight = 500000; 
@@ -76,7 +76,7 @@ public:
 
         vSeeds.clear(); // Add seed nodes here if you have any
 
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,28); // Prefix 'P'
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,28);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,50);
         base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,128);
 
